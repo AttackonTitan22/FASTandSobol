@@ -19,8 +19,8 @@ problem = {
 
 X = fast_sampler.sample(problem, 8378)
 factors=np.zeros(20)
-factors[10:]=99
-factors[:10]=0
+factors[10:]=0
+factors[:10]=99
 Y= Sobol_G.evaluate(X, factors)
 Si=fast.analyze(problem, Y, print_to_console=True)
 

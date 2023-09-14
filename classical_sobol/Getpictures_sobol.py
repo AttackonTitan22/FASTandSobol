@@ -6,7 +6,7 @@ import csv
 
 from matplotlib import pyplot as plt
 
-filename = '../sobol_TAE/groupD_TAE.csv'
+filename = '../sobol2_TAE/groupD_TAE.csv'
 with open(filename, "r") as csvfile:
     csvreader = csv.reader(csvfile)
 

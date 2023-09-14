@@ -37,7 +37,7 @@ for n in range(6,11):
     for i in range(epoch):
         print(f"&&&&&&&&&&&&&样本数为{2**n}的第{i+1}次实验开始&&&&&&&&&&&&&&&&")
         # Run model
-        Y = Sobol_G.evaluate(param_values, np.array(seq["group C"]))
+        Y = Sobol_G.evaluate(param_values, np.array(seq["group D"]))
 
         from SALib.analyze import sobol as sb
         # Perform analysis
@@ -56,28 +56,28 @@ for n in range(6,11):
             # TAE[i]+=abs(Si['ST'][j]-0.125)
 
             # 如果是C组
-            if j==0:
-                TAE[i]+=abs(Si['ST'][j]-0.787)
-            elif j==1:
-                TAE[i]+=abs(Si['ST'][j]-0.242)
-            elif j==2:
-                TAE[i]+=abs(Si['ST'][j]-0.034)
-            elif j==3:
-                TAE[i]+=abs(Si['ST'][j]-0.010)
-            else:
-                TAE[i]+=abs(Si['ST'][j]-1.05e-4)
+            # if j==0:
+            #     TAE[i]+=abs(Si['ST'][j]-0.787)
+            # elif j==1:
+            #     TAE[i]+=abs(Si['ST'][j]-0.242)
+            # elif j==2:
+            #     TAE[i]+=abs(Si['ST'][j]-0.034)
+            # elif j==3:
+            #     TAE[i]+=abs(Si['ST'][j]-0.010)
+            # else:
+            #     TAE[i]+=abs(Si['ST'][j]-1.05e-4)
 
             # 如果是D组
-            # if j==0 or j==4 or j==7:
-            #     TAE[i]+=abs(Si['ST'][j]-6.82e-5)
-            # elif j==1 or j==3:
-            #     TAE[i]+=abs(Si['ST'][j]-0.512)
-            # elif j==2:
-            #     TAE[i]+=abs(Si['ST'][j]-0.007)
-            # elif j==5:
-            #     TAE[i]+=abs(Si['ST'][j]-0.022)
-            # else:
-            #     TAE[i]+=abs(Si['ST'][j]-0.158)
+            if j==0 or j==4 or j==7:
+                TAE[i]+=abs(Si['ST'][j]-6.82e-5)
+            elif j==1 or j==3:
+                TAE[i]+=abs(Si['ST'][j]-0.512)
+            elif j==2:
+                TAE[i]+=abs(Si['ST'][j]-0.007)
+            elif j==5:
+                TAE[i]+=abs(Si['ST'][j]-0.022)
+            else:
+                TAE[i]+=abs(Si['ST'][j]-0.158)
         print(ST)
         print(TAE)
         print("\n")
@@ -95,7 +95,7 @@ for n in range(6,11):
         TAE = [0] * epoch
 
 # 将本次数据存入文件中
-csv_file = open('../sobol2_TAE/groupC_TAE.csv', 'w', newline='')
+csv_file = open('../sobol2_TAE/groupD_TAE.csv', 'w', newline='')
 writer = csv.writer(csv_file)
 writer.writerow(TAE_Y)
 writer.writerow(TAE_E)
@@ -114,7 +114,7 @@ xpoints=[64,128,256,512,1024]
 ypoints=TAE_Y
 
 plt.xlim(0,1200,200)
-plt.ylim(0,0.3)
+plt.ylim(0,0.6)
 
 plt.plot(xpoints,ypoints,linestyle="-",color="k")
 plt.errorbar(xpoints,ypoints,yerr=TAE_E,capsize=10,capthick=1,fmt="k",ecolor="k",elinewidth=0.75)
